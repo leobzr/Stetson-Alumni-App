@@ -5,3 +5,5 @@ const errorHandler = (err, req, res, next) => {
         stack: process.env.NODE_ENV === 'production' ? null : err.stack // Hide stack trace in production
     });
 }
+
+module.exports = errorHandler;
