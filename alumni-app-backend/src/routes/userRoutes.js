@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/userController');
+const { authenticateToken } = require('../middleware/authMiddleware');
 const router = express.Router();
 
 /**
@@ -23,6 +24,21 @@ const router = express.Router();
  *         description: A list of users
  */
 router.get('/', userController.getUsers);
+
+/**
+ * @swagger
+ * /api/users/profile:
+ *   get:
+ *     summary: Get current user profile
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Current user profile
+ *       401:
+ *         description: Unauthorized - invalid or missing token
+ */
+router.get('/profile', authenticateToken, userController.getProfile);
 
 /**
  * @swagger
