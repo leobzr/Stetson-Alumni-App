@@ -1,5 +1,6 @@
-const express = require('express');
-const opportunityController = require('../controllers/opportunityController');
+import express from 'express';
+import * as opportunityController from './opportunityController.js';
+
 const router = express.Router();
 
 /**
@@ -100,4 +101,4 @@ router.put('/:id', opportunityController.updateOpportunity);
  */
 router.delete('/:id', opportunityController.deleteOpportunity);
 
-module.exports = router;
+export default router;

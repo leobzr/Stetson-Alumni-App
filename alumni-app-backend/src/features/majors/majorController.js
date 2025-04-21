@@ -1,6 +1,6 @@
-const Major = require('../models/major');
+import { Major } from './major.js';
 
-exports.getAllMajors = async (req, res) => {
+export const getAllMajors = async (req, res) => {
   try {
     const majors = await Major.find();
     res.status(200).json(majors);
@@ -10,7 +10,7 @@ exports.getAllMajors = async (req, res) => {
   }
 }; 
 
-exports.getMajorById = async (req, res) => {
+export const getMajorById = async (req, res) => {
     try {
         const major = await Major.findById(req.params.id);
         if (!major) {
@@ -23,7 +23,7 @@ exports.getMajorById = async (req, res) => {
     }
 };
 
-exports.createMajor = async (req, res) => {
+export const createMajor = async (req, res) => {
     try {
         const newMajor = new Major(req.body);
         const savedMajor = await newMajor.save();
@@ -36,7 +36,7 @@ exports.createMajor = async (req, res) => {
     }
 };
 
-exports.updateMajor = async (req, res) => {
+export const updateMajor = async (req, res) => {
     try {
         const updatedMajor = await Major.findByIdAndUpdate(
             req.params.id,
@@ -53,7 +53,7 @@ exports.updateMajor = async (req, res) => {
     }
 };
 
-exports.deleteMajor = async (req, res) => {
+export const deleteMajor = async (req, res) => {
     try {
         const deletedMajor = await Major.findByIdAndDelete(req.params.id);
         if (!deletedMajor) {

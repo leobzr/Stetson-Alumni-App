@@ -1,7 +1,7 @@
-const User = require('../models/user');
+import { User } from './user.js';
 
 // Get all users with pagination
-exports.getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 5;
@@ -25,7 +25,7 @@ exports.getUsers = async (req, res) => {
 };
 
 // Get user by username
-exports.getUserByUsername = async (req, res) => {
+export const getUserByUsername = async (req, res) => {
   try {
     const user = await User.findOne({ user_name: req.params.username });
     if (!user) {
@@ -39,7 +39,7 @@ exports.getUserByUsername = async (req, res) => {
 };
 
 // Create a new user
-exports.createUser = async (req, res) => {
+export const createUser = async (req, res) => {
   try {
     const newUser = new User(req.body);
     const savedUser = await newUser.save();
@@ -53,7 +53,7 @@ exports.createUser = async (req, res) => {
 };
 
 // Update a user
-exports.updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
   try {
     const updatedUser = await User.findOneAndUpdate(
       { user_name: req.params.username },
@@ -74,7 +74,7 @@ exports.updateUser = async (req, res) => {
 };
 
 // Delete a user
-exports.deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   try {
     const deletedUser = await User.findOneAndDelete({ user_name: req.params.username });
     if (!deletedUser) {
@@ -88,7 +88,7 @@ exports.deleteUser = async (req, res) => {
 };
 
 // Get current user profile
-exports.getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
   try {
     const userId = req.user.id;
     const user = await User.findById(userId).select('-password -refresh_tokens');

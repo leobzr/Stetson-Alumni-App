@@ -1,6 +1,6 @@
-require('dotenv').config();  // Load environment variables once
-const app = require('./src/app');
-const connectDB = require('./src/config/database');
+import 'dotenv/config';  // Load environment variables once
+import app from './src/app.js';
+import connectDB from './src/config/database.js';
 
 // Connect to database
 connectDB();

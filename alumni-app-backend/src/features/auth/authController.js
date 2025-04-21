@@ -1,5 +1,5 @@
-const User = require('../models/user');
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+import { User } from '../users/user.js';
 
 // Secret keys and token lifetimes
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'access_secret_key';
@@ -17,7 +17,7 @@ const generateRefreshToken = (payload) => {
 };
 
 // Register a new user
-exports.register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { user_name, email, password, first_name, last_name, year_graduated, major, company, title } = req.body;
 
@@ -50,7 +50,7 @@ exports.register = async (req, res) => {
 };
 
 // Login user
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -99,7 +99,7 @@ exports.login = async (req, res) => {
 };
 
 // Refresh access token
-exports.refresh = async (req, res) => {
+export const refresh = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken;
 
@@ -131,7 +131,7 @@ exports.refresh = async (req, res) => {
 };
 
 // Logout user
-exports.logout = async (req, res) => {
+export const logout = async (req, res) => {
   try {
     // Clear refresh token cookie
     res.clearCookie('refreshToken');

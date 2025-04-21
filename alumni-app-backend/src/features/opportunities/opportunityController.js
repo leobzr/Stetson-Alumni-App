@@ -1,7 +1,7 @@
-const Opportunity = require('../models/opportunity');
+import { Opportunity } from "./opportunity.js";
 
 // Get all opportunities with pagination
-exports.getOpportunities = async (req, res) => {
+export const getOpportunities = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
@@ -25,7 +25,7 @@ exports.getOpportunities = async (req, res) => {
 };
 
 // Get opportunity by ID
-exports.getOpportunityById = async (req, res) => {
+export const getOpportunityById = async (req, res) => {
   try {
     const opportunity = await Opportunity.findById(req.params.id);
     if (!opportunity) {
@@ -39,7 +39,7 @@ exports.getOpportunityById = async (req, res) => {
 };
 
 // Create a new opportunity
-exports.createOpportunity = async (req, res) => {
+export const createOpportunity = async (req, res) => {
   try {
     const newOpportunity = new Opportunity(req.body);
     const savedOpportunity = await newOpportunity.save();
@@ -53,7 +53,7 @@ exports.createOpportunity = async (req, res) => {
 };
 
 // Update an opportunity
-exports.updateOpportunity = async (req, res) => {
+export const updateOpportunity = async (req, res) => {
     try {
         const updatedOpportunity = await Opportunity.findByIdAndUpdate(
         req.params.id,
@@ -71,7 +71,7 @@ exports.updateOpportunity = async (req, res) => {
 };
 
 // Delete an opportunity
-exports.deleteOpportunity = async (req, res) => {
+export const deleteOpportunity = async (req, res) => {
     try {
         const deletedOpportunity = await Opportunity.findByIdAndDelete(req.params.id);
         if (!deletedOpportunity) {

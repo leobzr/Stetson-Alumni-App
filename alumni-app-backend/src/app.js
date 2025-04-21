@@ -1,15 +1,19 @@
-const express = require('express');
-const cors = require('cors');
-const swaggerUI = require('swagger-ui-express');
-const specs = require('./config/swagger');
-const errorHandler = require('./middleware/errorHandler');
+import express from 'express';
+import cors from 'cors';
+import swaggerUI from 'swagger-ui-express';
+import cookieParser from 'cookie-parser';
+
+// Import middleware
+import errorHandler from './middleware/errorHandler.js';
+
+// Import configuration
+import specs from './config/swagger.js';
 
 // Import routes
-const userRoutes = require('./routes/userRoutes');
-const opportunityRoutes = require('./routes/opportunityRoutes');
-const majorRoutes = require('./routes/majorRoutes');
-const authRoutes = require('./routes/authRoutes');
-const cookieParser = require('cookie-parser');
+import userRoutes from './features/users/userRoutes.js';
+import opportunityRoutes from './features/opportunities/opportunityRoutes.js';
+import majorRoutes from './features/majors/majorRoutes.js';
+import authRoutes from './features/auth/authRoutes.js';
 
 const app = express();
 
@@ -39,4 +43,4 @@ app.use((req, res, next) => {
 
 app.use(errorHandler);
 
-module.exports = app;
+export default app;

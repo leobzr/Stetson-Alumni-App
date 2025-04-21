@@ -1,7 +1,7 @@
-const express = require('express');
-const majorController = require('../controllers/majorController');
-const router = express.Router();
+import express from 'express';
+import * as majorController from './majorController.js';
 
+const router = express.Router();
 /**
  * @swagger
  * /api/majors:
@@ -89,4 +89,4 @@ router.put('/:id', majorController.updateMajor);
  */
 router.delete('/:id', majorController.deleteMajor);
 
-module.exports = router;
+export default router;

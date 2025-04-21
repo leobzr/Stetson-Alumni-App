@@ -1,6 +1,7 @@
-const express = require('express');
-const userController = require('../controllers/userController');
-const { authenticateToken } = require('../middleware/authMiddleware');
+import express from 'express';
+import * as userController from './userController.js';
+import { authenticateToken } from '../../middleware/authMiddleware.js';
+
 const router = express.Router();
 
 /**
@@ -135,4 +136,4 @@ router.put('/:username', userController.updateUser);
  */
 router.delete('/:username', userController.deleteUser);
 
-module.exports = router;
+export default router;

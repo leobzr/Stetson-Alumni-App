@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const opportunitySchema = new mongoose.Schema({
     description:{
@@ -38,4 +38,4 @@ const opportunitySchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Opportunity', opportunitySchema);
+export const Opportunity = mongoose.model('Opportunity', opportunitySchema);

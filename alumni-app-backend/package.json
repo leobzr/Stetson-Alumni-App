@@ -1,7 +1,8 @@
 {
   "name": "alumni-app-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
@@ -12,7 +13,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "alumni-app-backend": "file:",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

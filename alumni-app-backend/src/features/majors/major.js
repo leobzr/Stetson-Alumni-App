@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const majorSchema = new mongoose.Schema({
   name: { 
@@ -11,4 +11,4 @@ const majorSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Major', majorSchema);
+export const Major = mongoose.model('Major', majorSchema);

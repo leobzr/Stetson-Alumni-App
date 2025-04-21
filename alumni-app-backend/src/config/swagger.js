@@ -1,4 +1,4 @@
-const swaggerJsdoc = require('swagger-jsdoc');
+import swaggerJsdoc from 'swagger-jsdoc';
 
 const options = {
   definition: {
@@ -10,14 +10,14 @@ const options = {
     },
     servers: [
       {
-        url: 'http://157.230.236.229:5000', // Your IP address
+        url: 'http://157.230.236.229:5000',
         description: 'Alumni App API Server',
       },
     ],
   },
-  apis: ['./src/routes/*.js'], // Path to the API routes
+  apis: ['./src/features/**/*Routes.js'], // Updated path to reflect new structure
 };
 
 const specs = swaggerJsdoc(options);
 
-module.exports = specs;
+export default specs;
