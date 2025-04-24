@@ -27,8 +27,11 @@ const opportunitySchema = new mongoose.Schema({
         default: false,
     },
     approved_by:{
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    approval_date: {
+        type: Date
     },
     is_paid:{
         type: Boolean,

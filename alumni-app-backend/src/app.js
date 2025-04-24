@@ -14,6 +14,8 @@ import userRoutes from './features/users/userRoutes.js';
 import opportunityRoutes from './features/opportunities/opportunityRoutes.js';
 import majorRoutes from './features/majors/majorRoutes.js';
 import authRoutes from './features/auth/authRoutes.js';
+import adminRoutes from './features/admin/adminRoutes.js';
+import messageRoutes from './features/messages/messageRoutes.js';
 
 const app = express();
 
@@ -32,6 +34,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/opportunities', opportunityRoutes);
 app.use('/api/majors', majorRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/messages', messageRoutes);
 
 // Swagger documentation
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs));
