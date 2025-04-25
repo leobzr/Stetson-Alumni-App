@@ -1,5 +1,32 @@
-// src/components/LoginModal.jsx
+import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+
 function LoginModal({ closeModal }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+    
+    try {
+      const result = await login(email, password);
+      if (result.success) {
+        closeModal();
+      } else {
+        setError(result.error);
+      }
+    } catch (err) {
+      setError(err.message || 'Login failed');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="modal show" style={{ display: 'block' }} tabIndex="-1">
       <div className="modal-dialog">
@@ -9,28 +36,38 @@ function LoginModal({ closeModal }) {
             <button type="button" className="btn-close" onClick={closeModal}></button>
           </div>
           <div className="modal-body">
-            <form>
+            {error && <div className="alert alert-danger">{error}</div>}
+            <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="username" className="form-label">
-                  Username/Email
-                </label>
+                <label htmlFor="email" className="form-label">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   className="form-control"
-                  id="username"
-                  placeholder="Enter your username or email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
+                <label htmlFor="password" className="form-label">Password</label>
                 <input
                   type="password"
                   className="form-control"
                   id="password"
-                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
+              </div>
+              <div className="d-grid gap-2">
+                <button 
+                  type="submit" 
+                  className="btn btn-primary"
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Logging in...' : 'Login'}
+                </button>
               </div>
             </form>
           </div>

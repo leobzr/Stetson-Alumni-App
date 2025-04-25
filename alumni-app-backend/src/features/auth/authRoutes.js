@@ -1,5 +1,6 @@
 import express from 'express';
 import * as authController from './authController.js';
+import { authenticateToken } from '../../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -82,5 +83,19 @@ router.post('/refresh', authController.refresh);
  *         description: Logged out successfully
  */
 router.post('/logout', authController.logout);
+
+// Add this route to your existing authRoutes.js file
+/**
+ * @swagger
+ * /api/auth/me:
+ *   get:
+ *     summary: Get current authenticated user
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Current user details
+ */
+router.get('/me', authenticateToken, authController.getCurrentUser);
 
 export default router;

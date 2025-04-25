@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken';
 
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
+    // Optionally, support cookies:
+    // const token = authHeader && authHeader.split(' ')[1] || req.cookies?.accessToken;
     const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
@@ -10,9 +12,10 @@ const authenticateToken = (req, res, next) => {
 
     try {
         const verified = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        req.user = verified;
+        req.user = verified; // Make sure your JWT payload includes 'role'
         next();
     } catch (error) {
+        console.error('JWT verification failed:', error.message);
         res.status(403).json({ message: 'Invalid token.' });
     }
 };

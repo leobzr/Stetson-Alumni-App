@@ -69,4 +69,14 @@ router.put('/:messageId/read', messageController.markAsRead);
  */
 router.delete('/:messageId', messageController.deleteMessage);
 
+/**
+ * @swagger
+ * /api/messages/conversation/{otherUserId}:
+ *   get:
+ *     summary: Get all messages between the authenticated user and another user
+ *     security:
+ *       - bearerAuth: []
+ */
+router.get('/conversation/:otherUserId', messageController.getConversation);
+
 export default router;

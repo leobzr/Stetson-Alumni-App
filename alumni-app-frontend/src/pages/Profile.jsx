@@ -14,8 +14,14 @@ function Profile() {
             try {
                 const endpoint = userId
                     ? `${API_BASE_URL}/users/${userId}` // Fetch specific user profile
-                    : `${API_BASE_URL}/users/leobzr`; // Fetch your profile
-                const response = await fetch(endpoint);
+                    : `${API_BASE_URL}/users/profile`; // Use /users/profile endpoint instead of hardcoded username
+                
+                const response = await fetch(endpoint, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Retrieve token from localStorage
+                    },
+                    credentials: 'include'
+                });
                 if (!response.ok) {
                     throw new Error('Failed to fetch profile data');
                 }

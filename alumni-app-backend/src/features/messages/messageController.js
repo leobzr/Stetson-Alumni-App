@@ -98,3 +98,21 @@ export const deleteMessage = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getConversation = async (req, res) => {
+  try {
+    const me = req.user.id;
+    const other = req.params.otherUserId;
+    const msgs = await Message.find({
+      $or: [
+        { sender: me, recipient: other },
+        { sender: other, recipient: me }
+      ]
+    }).sort({ createdAt: 1 })
+      .populate('sender', 'first_name last_name user_name')
+      .populate('recipient', 'first_name last_name user_name');
+    res.status(200).json(msgs);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
