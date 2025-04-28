@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1745800411806" clover="3.2.0">
-  <project timestamp="1745800411806" name="All files">
-    <metrics statements="404" coveredstatements="204" conditionals="100" coveredconditionals="28" methods="76" coveredmethods="30" elements="580" coveredelements="262" complexity="0" loc="404" ncloc="404" packages="10" files="27" classes="27"/>
+<coverage generated="1745863422574" clover="3.2.0">
+  <project timestamp="1745863422574" name="All files">
+    <metrics statements="407" coveredstatements="181" conditionals="100" coveredconditionals="21" methods="77" coveredmethods="25" elements="584" coveredelements="227" complexity="0" loc="407" ncloc="407" packages="10" files="28" classes="28"/>
     <package name="src">
       <metrics statements="14" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="app.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\app.js">
@@ -75,20 +75,20 @@
       </file>
       <file name="adminService.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\features\admin\adminService.js">
         <metrics statements="8" coveredstatements="5" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="3"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="20" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="21" count="3" type="stmt"/>
-        <line num="27" count="3" type="stmt"/>
-        <line num="35" count="3" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="20" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
         <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="46" count="0" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.features.auth">
-      <metrics statements="76" coveredstatements="38" conditionals="22" coveredconditionals="13" methods="14" coveredmethods="5"/>
+      <metrics statements="76" coveredstatements="24" conditionals="22" coveredconditionals="9" methods="14" coveredmethods="2"/>
       <file name="authController.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\features\auth\authController.js">
-        <metrics statements="38" coveredstatements="16" conditionals="6" coveredconditionals="4" methods="7" coveredmethods="1"/>
+        <metrics statements="38" coveredstatements="11" conditionals="6" coveredconditionals="4" methods="7" coveredmethods="0"/>
         <line num="6" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="7" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="8" count="4" type="stmt"/>
@@ -103,11 +103,11 @@
         <line num="24" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="31" count="4" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
         <line num="46" count="0" type="stmt"/>
         <line num="51" count="4" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
@@ -138,30 +138,30 @@
         <line num="99" count="4" type="stmt"/>
       </file>
       <file name="authService.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\features\auth\authService.js">
-        <metrics statements="32" coveredstatements="16" conditionals="16" coveredconditionals="9" methods="7" coveredmethods="4"/>
+        <metrics statements="32" coveredstatements="7" conditionals="16" coveredconditionals="5" methods="7" coveredmethods="2"/>
         <line num="9" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="10" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="11" count="5" type="stmt"/>
         <line num="12" count="5" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
         <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="39" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
-        <line num="56" count="2" type="stmt"/>
-        <line num="57" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="57" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="58" count="1" type="stmt"/>
-        <line num="62" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="63" count="0" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
-        <line num="68" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="68" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="69" count="0" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
-        <line num="81" count="1" type="stmt"/>
-        <line num="82" count="1" type="stmt"/>
-        <line num="84" count="1" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
         <line num="91" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="92" count="0" type="stmt"/>
         <line num="95" count="0" type="stmt"/>
@@ -330,11 +330,11 @@
       <file name="opportunityController.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\features\opportunities\opportunityController.js">
         <metrics statements="33" coveredstatements="21" conditionals="10" coveredconditionals="6" methods="5" coveredmethods="4"/>
         <line num="4" count="4" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="6" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="7" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="17" count="4" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
@@ -344,9 +344,9 @@
         <line num="23" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="30" count="4" type="stmt"/>
-        <line num="31" count="3" type="stmt"/>
-        <line num="32" count="3" type="stmt"/>
-        <line num="33" count="3" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
         <line num="40" count="4" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
@@ -374,31 +374,31 @@
       </file>
       <file name="opportunityService.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\features\opportunities\opportunityService.js">
         <metrics statements="9" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="4"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="17" count="4" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="31" count="4" type="stmt"/>
-        <line num="36" count="4" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
         <line num="43" count="1" type="stmt"/>
         <line num="54" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.features.users">
-      <metrics statements="69" coveredstatements="28" conditionals="16" coveredconditionals="1" methods="15" coveredmethods="4"/>
+      <metrics statements="69" coveredstatements="22" conditionals="16" coveredconditionals="0" methods="15" coveredmethods="2"/>
       <file name="user.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\features\users\user.js">
-        <metrics statements="11" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <metrics statements="11" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="4" count="8" type="stmt"/>
         <line num="61" count="8" type="stmt"/>
-        <line num="62" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="63" count="3" type="stmt"/>
-        <line num="64" count="3" type="stmt"/>
-        <line num="65" count="3" type="stmt"/>
-        <line num="66" count="3" type="stmt"/>
+        <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="72" count="8" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
         <line num="77" count="8" type="stmt"/>
       </file>
       <file name="userController.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\features\users\userController.js">
@@ -470,20 +470,20 @@
       </file>
     </package>
     <package name="src.middleware">
-      <metrics statements="18" coveredstatements="11" conditionals="12" coveredconditionals="4" methods="3" coveredmethods="1"/>
+      <metrics statements="18" coveredstatements="7" conditionals="12" coveredconditionals="2" methods="3" coveredmethods="1"/>
       <file name="authMiddleware.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\middleware\authMiddleware.js">
-        <metrics statements="15" coveredstatements="10" conditionals="8" coveredconditionals="4" methods="2" coveredmethods="1"/>
+        <metrics statements="15" coveredstatements="6" conditionals="8" coveredconditionals="2" methods="2" coveredmethods="1"/>
         <line num="3" count="4" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="7" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="7" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="10" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
         <line num="23" count="4" type="stmt"/>
         <line num="24" count="0" type="cond" truecount="0" falsecount="4"/>
         <line num="25" count="0" type="stmt"/>
@@ -497,7 +497,13 @@
       </file>
     </package>
     <package name="src.tests">
-      <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <metrics statements="18" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
+      <file name="test-helpers.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\tests\test-helpers.js">
+        <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
       <file name="test-setup.js" path="C:\Users\Leo\Desktop\project-2-leobzr\alumni-app-backend\src\tests\test-setup.js">
         <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="6" count="4" type="stmt"/>
@@ -510,11 +516,11 @@
         <line num="16" count="4" type="stmt"/>
         <line num="17" count="4" type="stmt"/>
         <line num="20" count="4" type="stmt"/>
-        <line num="21" count="19" type="stmt"/>
-        <line num="23" count="19" type="stmt"/>
-        <line num="24" count="76" type="stmt"/>
-        <line num="25" count="76" type="stmt"/>
-        <line num="27" count="19" type="stmt"/>
+        <line num="21" count="12" type="stmt"/>
+        <line num="23" count="12" type="stmt"/>
+        <line num="24" count="48" type="stmt"/>
+        <line num="25" count="48" type="stmt"/>
+        <line num="27" count="12" type="stmt"/>
       </file>
     </package>
   </project>

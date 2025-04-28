@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">21.87% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/32</span>
+                <span class='fraction'>7/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.25% </span>
+                <span class="strong">31.25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/16</span>
+                <span class='fraction'>5/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>2/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">21.87% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/32</span>
+                <span class='fraction'>7/32</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -203,14 +203,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -240,24 +240,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -265,10 +265,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -324,15 +324,15 @@ class AuthService {
   /**
    * Generate an access token
    */
-  generateAccessToken(payload) {
-    return jwt.sign(payload, this.ACCESS_TOKEN_SECRET, { expiresIn: this.ACCESS_TOKEN_LIFE });
+<span class="fstat-no" title="function not covered" >  ge</span>nerateAccessToken(payload) {
+<span class="cstat-no" title="statement not covered" >    return jwt.sign(payload, this.ACCESS_TOKEN_SECRET, { expiresIn: this.ACCESS_TOKEN_LIFE });</span>
   }
 &nbsp;
   /**
    * Generate a refresh token
    */
-  generateRefreshToken(payload) {
-    return jwt.sign(payload, this.REFRESH_TOKEN_SECRET, { expiresIn: this.REFRESH_TOKEN_LIFE });
+<span class="fstat-no" title="function not covered" >  ge</span>nerateRefreshToken(payload) {
+<span class="cstat-no" title="statement not covered" >    return jwt.sign(payload, this.REFRESH_TOKEN_SECRET, { expiresIn: this.REFRESH_TOKEN_LIFE });</span>
   }
 &nbsp;
   /**
@@ -363,34 +363,34 @@ class AuthService {
   async login(email, password) {
     // Find user
     const user = await User.findOne({ email });
-    if (!user) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!user) {
       throw new Error('Invalid credentials');
     }
 &nbsp;
     // Check if user is approved
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!user.is_approved) {
+<span class="cstat-no" title="statement not covered" >    if (!user.is_approved) {</span>
 <span class="cstat-no" title="statement not covered" >      throw new Error('Account pending approval');</span>
     }
 &nbsp;
     // Verify password
-    const isPasswordValid = await user.comparePassword(password);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!isPasswordValid) {
+    const isPasswordValid = <span class="cstat-no" title="statement not covered" >await user.comparePassword(password);</span>
+<span class="cstat-no" title="statement not covered" >    if (!isPasswordValid) {</span>
 <span class="cstat-no" title="statement not covered" >      throw new Error('Invalid credentials');</span>
     }
 &nbsp;
     // Create payload
-    const payload = {
+    const payload = <span class="cstat-no" title="statement not covered" >{</span>
       id: user._id,
       user_name: user.user_name,
       email: user.email,
-      role: user.role || <span class="branch-1 cbranch-no" title="branch not covered" >'user'</span>
+      role: user.role || 'user'
     };
 &nbsp;
     // Generate tokens
-    const accessToken = this.generateAccessToken(payload);
-    const refreshToken = this.generateRefreshToken(payload);
+    const accessToken = <span class="cstat-no" title="statement not covered" >this.generateAccessToken(payload);</span>
+    const refreshToken = <span class="cstat-no" title="statement not covered" >this.generateRefreshToken(payload);</span>
     
-    return { accessToken, refreshToken, user };
+<span class="cstat-no" title="statement not covered" >    return { accessToken, refreshToken, user };</span>
   }
   
   /**
@@ -436,7 +436,7 @@ export default new AuthService();</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-28T00:33:31.375Z
+                at 2025-04-28T18:03:42.310Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
