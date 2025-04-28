@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://157.230.236.229:5000',
+        url: 'http://165.227.84.162',
         description: 'Alumni App API Server',
       },
     ],
