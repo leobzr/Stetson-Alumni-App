@@ -21,7 +21,14 @@ const app = express();
 
 // Middleware
 app.use(cors({
+<<<<<<< HEAD
   origin: ['http://localhost:5173', 'http://165.227.84.162'],
+=======
+  origin: [
+    'http://localhost:5173', 
+    'http://165.227.84.162'  // Your Digital Ocean droplet IP
+  ],
+>>>>>>> refs/remotes/origin/main
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
