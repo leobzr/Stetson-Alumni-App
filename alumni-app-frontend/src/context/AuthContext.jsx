@@ -1,14 +1,16 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect } from 'react';
 import { API_BASE_URL } from '../../config';
-
+import { isTokenExpiringSoon } from '../utils/jwtHelper';
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken'));
-  const [user, setUser]         = useState(null);
-  const [loading, setLoading]   = useState(true);
-
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [tokenExpiring, setTokenExpiring] = useState(false);
+  const [showExpirationAlert, setShowExpirationAlert] = useState(false);
+  
   // Check existing token on load
   useEffect(() => {
     const checkAuth = async () => {
@@ -38,6 +40,61 @@ export function AuthProvider({ children }) {
     };
     checkAuth();
   }, []);
+
+  // Set up token expiration monitoring
+  useEffect(() => {
+    if (!accessToken) {
+      setTokenExpiring(false);
+      setShowExpirationAlert(false);
+      return;
+    }
+
+    // Check token expiration every 60 seconds
+    const checkInterval = setInterval(() => {
+      if (isTokenExpiringSoon(accessToken, 300)) { // 5 minutes warning
+        setTokenExpiring(true);
+        setShowExpirationAlert(true);
+      } else {
+        setTokenExpiring(false);
+      }
+    }, 60000);
+
+    // Initial check
+    if (isTokenExpiringSoon(accessToken, 300)) {
+      setTokenExpiring(true);
+      setShowExpirationAlert(true);
+    }
+
+    return () => clearInterval(checkInterval);
+  }, [accessToken]);
+
+  // Function to refresh the token
+  const refreshToken = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
+        method: 'POST',
+        credentials: 'include',
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('accessToken', data.accessToken);
+        setAccessToken(data.accessToken);
+        setTokenExpiring(false);
+        setShowExpirationAlert(false);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Token refresh failed:', error);
+      return false;
+    }
+  };
+
+  // Function to dismiss the expiration alert
+  const dismissExpirationAlert = () => {
+    setShowExpirationAlert(false);
+  };
 
   // LOGIN: save token and fetch user
   const login = async (email, password) => {
@@ -129,12 +186,16 @@ export function AuthProvider({ children }) {
   return (
     <AuthContext.Provider value={{
       user,
-      accessToken,  // <-- now available to pages
+      accessToken,
       loading,
+      tokenExpiring,
+      showExpirationAlert,
       login,
       logout,
       signup,
-      updateProfile
+      updateProfile,
+      refreshToken,
+      dismissExpirationAlert
     }}>
       {children}
     </AuthContext.Provider>

@@ -13,6 +13,8 @@ import ApproveOpportunities from './pages/ApproveOpportunities'
 import ApproveUsers from './pages/ApproveUsers'
 import Messages from './pages/Messages'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import TokenExpirationAlert from './components/TokenExpirationAlert';
+import PostOpportunity from './pages/PostOpportunity';
 
 // Protected route component
 function ProtectedRoute({ children }) {
@@ -97,6 +99,11 @@ function AppContent() {
                       <li className="nav-item">
                         <Link className="nav-link" to="/messages">Messages</Link>
                       </li>
+                      {user.is_approved && (
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/post-opportunity">Post Opportunity</Link>
+                        </li>
+                      )}
                     </>
                   )}
                   {user?.role === 'admin' && (
@@ -243,6 +250,14 @@ function AppContent() {
                 </AdminRoute>
               }
             />
+            <Route 
+              path="/post-opportunity" 
+              element={
+                <ProtectedRoute>
+                  <PostOpportunity />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </main>
 
@@ -250,6 +265,7 @@ function AppContent() {
 
         {showLogin && <LoginModal closeModal={() => setShowLogin(false)} />}
         {showSignup && <SignupModal closeModal={() => setShowSignup(false)} />}
+        <TokenExpirationAlert />
       </div>
     </Router>
   );

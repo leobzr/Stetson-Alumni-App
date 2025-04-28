@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../users/user.js';
+import authService from './authService.js';
 
 // Secret keys and token lifetimes
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'access_secret_key';
@@ -19,33 +20,10 @@ const generateRefreshToken = (payload) => {
 // Register a new user
 export const register = async (req, res) => {
   try {
-    const { user_name, email, password, first_name, last_name, year_graduated, major, company, title } = req.body;
-
-    // Check if user already exists
-    const existingUser = await User.findOne({ $or: [{ email }, { user_name }] });
-    if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
-    }
-
-    // Create new user
-    const user = new User({
-      user_name,
-      email,
-      password,
-      first_name,
-      last_name,
-      year_graduated,
-      major,
-      company,
-      title,
-      is_approved: false // Users start as unapproved
-    });
-
-    await user.save();
-
+    const user = await authService.register(req.body);
     res.status(201).json({ message: 'User registered successfully. Awaiting approval.' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -53,37 +31,8 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
-    // Find user
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    // Check if user is approved
-    if (!user.is_approved) {
-      return res.status(403).json({ message: 'Account pending approval' });
-    }
-
-    // Verify password - assumes you have a comparePassword method on user model
-    // If not using bcrypt yet, do a direct comparison for now
-    const isPasswordValid = await user.comparePassword(password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    // Create payload
-    const payload = {
-      id: user._id,
-      user_name: user.user_name,
-      email: user.email,
-      role: user.role || 'user'
-    };
-
-    // Generate tokens
-    const accessToken = generateAccessToken(payload);
-    const refreshToken = generateRefreshToken(payload);
-
+    const { accessToken, refreshToken, user } = await authService.login(email, password);
+    
     // Set refresh token as cookie
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
@@ -94,7 +43,7 @@ export const login = async (req, res) => {
 
     res.json({ accessToken });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(401).json({ message: error.message });
   }
 };
 
@@ -102,31 +51,10 @@ export const login = async (req, res) => {
 export const refresh = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken;
-
-    if (!refreshToken) {
-      return res.status(401).json({ message: 'Refresh token not found' });
-    }
-
-    // Verify refresh token
-    jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, (err, decoded) => {
-      if (err) {
-        return res.status(403).json({ message: 'Invalid refresh token' });
-      }
-
-      // Create new payload
-      const payload = {
-        id: decoded.id,
-        user_name: decoded.user_name,
-        email: decoded.email,
-        role: decoded.role
-      };
-
-      // Generate new access token
-      const newAccessToken = generateAccessToken(payload);
-      res.json({ accessToken: newAccessToken });
-    });
+    const { accessToken } = await authService.refresh(refreshToken);
+    res.json({ accessToken });
   } catch (error) {
-    res.status(403).json({ message: 'Invalid or expired refresh token' });
+    res.status(403).json({ message: error.message });
   }
 };
 
@@ -144,8 +72,7 @@ export const logout = async (req, res) => {
 // Get current authenticated user
 export const getCurrentUser = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const user = await User.findById(userId).select('-password -refresh_tokens');
+    const user = await authService.getCurrentUser(req.user.id);
     
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

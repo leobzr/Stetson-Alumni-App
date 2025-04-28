@@ -1,86 +1,67 @@
-import { Opportunity } from "./opportunity.js";
+import opportunityService from './opportunityService.js';
 
 // Get all opportunities with pagination
 export const getOpportunities = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-    const skip = (page - 1) * limit;
-
-    const opportunities = await Opportunity.find()
-      .skip(skip)
-      .limit(limit);
-    const total = await Opportunity.countDocuments();
-
-    res.status(200).json({
-      total,
-      page,
-      limit,
-      opportunities
-    });
+    
+    const result = await opportunityService.getOpportunities(page, limit);
+    res.status(200).json(result);
   } catch (error) {
-    console.error("Error retrieving opportunities:", error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ message: error.message });
   }
 };
 
 // Get opportunity by ID
 export const getOpportunityById = async (req, res) => {
   try {
-    const opportunity = await Opportunity.findById(req.params.id);
+    const opportunity = await opportunityService.getOpportunityById(req.params.id);
     if (!opportunity) {
       return res.status(404).json({ message: "Opportunity not found" });
     }
     res.status(200).json(opportunity);
   } catch (error) {
-    console.error("Error retrieving opportunity:", error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ message: error.message });
   }
 };
 
 // Create a new opportunity
 export const createOpportunity = async (req, res) => {
   try {
-    const newOpportunity = new Opportunity(req.body);
-    const savedOpportunity = await newOpportunity.save();
+    const savedOpportunity = await opportunityService.createOpportunity(req.body);
     res.status(201).json(savedOpportunity);
   } catch (error) {
-    res.status(400).json({
-      message: "Error creating opportunity",
-        error: error.message
-    });
-    }
+    res.status(400).json({ message: error.message });
+  }
 };
 
 // Update an opportunity
 export const updateOpportunity = async (req, res) => {
-    try {
-        const updatedOpportunity = await Opportunity.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-        );
-        if (!updatedOpportunity) {
-        return res.status(404).json({ message: "Opportunity not found" });
-        }
-        res.status(200).json(updatedOpportunity);
-    } catch (error) {
-        console.error("Error updating opportunity:", error);
-        res.status(500).json({ message: "Internal Server Error" });
+  try {
+    const updatedOpportunity = await opportunityService.updateOpportunity(
+      req.params.id,
+      req.body
+    );
+    if (!updatedOpportunity) {
+      return res.status(404).json({ message: "Opportunity not found" });
     }
+    res.status(200).json(updatedOpportunity);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
 // Delete an opportunity
 export const deleteOpportunity = async (req, res) => {
-    try {
-        const deletedOpportunity = await Opportunity.findByIdAndDelete(req.params.id);
-        if (!deletedOpportunity) {
-            return res.status(404).json({ message: "Opportunity not found" });
-        }
-        res.status(200).json({ message: "Opportunity deleted successfully" });
-    } catch (error) {
-        console.error("Error deleting opportunity:", error);
-        res.status(500).json({ message: "Internal Server Error" });
+  try {
+    const deletedOpportunity = await opportunityService.deleteOpportunity(req.params.id);
+    if (!deletedOpportunity) {
+      return res.status(404).json({ message: "Opportunity not found" });
     }
+    res.status(200).json({ message: "Opportunity deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
