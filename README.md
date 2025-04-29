@@ -12,7 +12,7 @@ This application provides a platform for university alumni to connect, share job
 - User authentication with JWT and refresh tokens
 - Role-based access control (admin vs regular users)
 - Admin approval for new users and opportunities
-- Direct messaging between users
+- Direct messaging between users (You need to go to a user profile and click on the send a message button)
 - Opportunity posting and browsing
 - User profiles with education and work history
 - RESTful API with Swagger documentation
