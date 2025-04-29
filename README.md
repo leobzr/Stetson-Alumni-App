@@ -24,9 +24,6 @@ This application provides a platform for university alumni to connect, share job
 - **Documentation**: Swagger UI
 - **Deployment**: Digital Ocean, NGINX, PM2
 
-## API Documentation
-API documentation is available at: http://165.227.84.162/api-docs
-
 ## Deployment Details
 - Server: Ubuntu 24.10 on Digital Ocean
 - Web Server: NGINX as reverse proxy
