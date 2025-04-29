@@ -2,8 +2,7 @@
 
 **Name:** Leonardo Bezerra Correia da Silva
 **Assignment:** Project 2 - Full Stack Alumni Application  
-**Server IP Address:** http://165.227.84.162  
-**Swagger Address:** http://165.227.84.162/api-docs
+**Server IP Address:** Not available. (avoiding security breaches).
 
 ## Description
 This application provides a platform for university alumni to connect, share job opportunities, and communicate with each other. Alumni can create profiles, post and browse job opportunities, and message other alumni directly within the platform.
