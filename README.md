@@ -1,35 +1,48 @@
-
-
 # Alumni App
 
-**Name:** Leo Bezerra  
-**Assignment:** Assignment 3  
-**Date Due:** April 10, 2025  
-**Server IP Address:** http://157.230.236.229
-**API Documentation:** http://157.230.236.229:5000/api-docs
+**Name:** Leonardo Bezerra Correia da Silva
+**Assignment:** Project 2 - Full Stack Alumni Application  
+**Server IP Address:** http://165.227.84.162  
+**Swagger Address:** http://165.227.84.162/api-docs
 
-## Project Description
-This application serves as a platform for university alumni to connect, share opportunities, and maintain their professional profiles. It provides a way for graduates to stay connected to their university network and share job opportunities with current students and fellow alumni.
+## Description
+This application provides a platform for university alumni to connect, share job opportunities, and communicate with each other. Alumni can create profiles, post and browse job opportunities, and message other alumni directly within the platform.
 
 ## Features
-- User profiles for alumni with education and professional details
-- Opportunity listings (jobs, internships, volunteer positions)
-- REST API with comprehensive documentation
-- Responsive frontend built with React
+- User authentication with JWT and refresh tokens
+- Role-based access control (admin vs regular users)
+- Admin approval for new users and opportunities
+- Direct messaging between users
+- Opportunity posting and browsing
+- User profiles with education and work history
+- RESTful API with Swagger documentation
 
 ## Technologies Used
-- **Frontend**: React, Vite
-- **Backend**: Node.js, Express
-- **Database**: MongoDB
-- **Deployment**: Digital Ocean, Nginx
+- **Frontend**: React.js, Vite, CSS
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB Atlas
+- **Authentication**: JWT with HTTP-only cookies
 - **Documentation**: Swagger UI
+- **Deployment**: Digital Ocean, NGINX, PM2
 
-## API Endpoints
-The API documentation is available at http://157.230.236.229:5000/api-docs
+## API Documentation
+API documentation is available at: http://165.227.84.162/api-docs
 
-## Setup Instructions
-1. Clone repository
-2. Install dependencies with `npm install` in both frontend and backend directories
-3. Set up MongoDB connection in `.env` file
-4. Start backend with `npm start` or `pm2 start server.js`
-5. Build frontend with `npm run build`
+## Deployment Details
+- Server: Ubuntu 24.10 on Digital Ocean
+- Web Server: NGINX as reverse proxy
+- Process Manager: PM2
+- Database: MongoDB Atlas
+
+## Project Structure
+- Modular backend with feature-based organization
+- Service layer architecture
+- React frontend with protected routes
+- CORS enabled for secure cross-origin requests
+
+## Security Features
+- JWT stored in HTTP-only cookies
+- Refresh token rotation
+- Password hashing using bcrypt
+- Protected routes with middleware
+- Environment variables for sensitive information
