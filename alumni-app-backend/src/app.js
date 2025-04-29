@@ -22,9 +22,9 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: ['http://localhost:5173', 'http://165.227.84.162'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   exposedHeaders: ['set-cookie']
 }));
 app.use(express.json());

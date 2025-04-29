@@ -3,7 +3,7 @@
  */
 
 // API base URL - update this value when deploying to different environments
-export const API_BASE_URL = 'http://localhost:5000/api'; // Local development URL
+export const API_BASE_URL = 'http://165.227.84.162/api'; // Local development URL
 
 // Other configuration settings
 export const ITEMS_PER_PAGE = 5; // Number of items to display per page
