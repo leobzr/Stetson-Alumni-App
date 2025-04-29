@@ -10,7 +10,9 @@ function Messages() {
   const [newMessage, setNewMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const messagesEndRef = useRef(null);
-
+  
+  // Remove the modal-related states since we're using profile navigation instead
+  
   // Load inbox + sent, derive unique partners with full user info
   const fetchPartners = useCallback(async () => {
     try {
@@ -50,13 +52,13 @@ function Messages() {
     }
   }, [accessToken]);
 
-  // send with recipient_username
+  // Modified send message function with proper response handling
   const sendMessage = async e => {
     e.preventDefault();
     if (!newMessage.trim() || !selectedUser) return;
     
     try {
-      await fetch(`${API_BASE_URL}/messages`, {
+      const response = await fetch(`${API_BASE_URL}/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,9 +70,20 @@ function Messages() {
           content: newMessage
         })
       });
-      // reload conversation and clear input
-      fetchConversation(selectedUser);
-      setNewMessage('');
+      
+      // Check if the response is successful
+      if (response.ok) {
+        // Add this user to conversations list if not already there
+        if (!conversations.some(c => c._id === selectedUser._id)) {
+          setConversations(prev => [...prev, selectedUser]);
+        }
+        
+        // reload conversation and clear input
+        fetchConversation(selectedUser);
+        setNewMessage('');
+      } else {
+        console.error("Failed to send message:", await response.text());
+      }
     } catch (err) {
       console.error("Error sending message:", err);
     }
@@ -85,6 +98,29 @@ function Messages() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Enhanced profile messaging effect to update conversations list
+  useEffect(() => {
+    const storedUser = sessionStorage.getItem('messageUser');
+    if (storedUser) {
+      try {
+        const userToMessage = JSON.parse(storedUser);
+        
+        // Add this user to conversations if not already there
+        if (!conversations.some(c => c._id === userToMessage._id)) {
+          setConversations(prev => [...prev, userToMessage]);
+        }
+        
+        // Set as selected user
+        setSelectedUser(userToMessage);
+        
+        // Clear stored user to avoid reloading on refresh
+        sessionStorage.removeItem('messageUser');
+      } catch (err) {
+        console.error("Error parsing stored user:", err);
+      }
+    }
+  }, [conversations]); // Changed dependency to conversations
+
   // Format timestamp
   const formatTime = (dateString) => {
     const date = new Date(dateString);
@@ -92,18 +128,19 @@ function Messages() {
   };
 
   return (
-    <div className="container-fluid mt-4"> {/* Changed from container to container-fluid for more width */}
+    <div className="container-fluid mt-4">
       <h2 className="mb-4">Messages</h2>
       
-      <div className="card" style={{ maxWidth: '1500px', margin: '0 auto' }}> {/* Added max-width and center alignment */}
+      <div className="card" style={{ maxWidth: '1500px', margin: '0 auto' }}>
         <div className="row g-0">
           {/* Conversations sidebar */}
-          <div className="col-12 col-lg-4 col-xl-3 border-right"> {/* Reduced from col-lg-5 to col-lg-4 */}
+          <div className="col-12 col-lg-4 col-xl-3 border-right">
             <div className="px-4 d-none d-md-block">
-              <div className="d-flex align-items-center">
-                <div className="flex-grow-1">
+              <div className="d-flex align-items-center justify-content-between">
+                <div>
                   <h5 className="my-3">Conversations</h5>
                 </div>
+                {/* Removed New Message button */}
               </div>
             </div>
 
@@ -116,6 +153,7 @@ function Messages() {
             ) : conversations.length === 0 ? (
               <div className="text-center p-4 text-muted">
                 <p>No conversations yet</p>
+                <p className="small">Visit a user's profile to start a conversation</p>
               </div>
             ) : (
               <div className="list-group rounded-0">
@@ -149,8 +187,8 @@ function Messages() {
             )}
           </div>
           
-          {/* Chat area */}
-          <div className="col-12 col-lg-8 col-xl-9"> {/* Increased from col-lg-7 to col-lg-8 */}
+          {/* Chat area - no changes needed */}
+          <div className="col-12 col-lg-8 col-xl-9">
             {selectedUser ? (
               <>
                 {/* Chat header */}
@@ -167,11 +205,11 @@ function Messages() {
                   </div>
                 </div>
 
-                {/* Messages - REDUCED HEIGHT */}
+                {/* Messages area - no changes needed */}
                 <div 
                   className="position-relative" 
                   style={{ 
-                    height: '300px', /* Reduced from 400px to 300px */
+                    height: '300px',
                     overflowY: 'scroll', 
                     display: 'flex', 
                     flexDirection: 'column',
@@ -221,7 +259,7 @@ function Messages() {
                   <div ref={messagesEndRef} />
                 </div>
 
-                {/* Message input */}
+                {/* Message input - no changes needed */}
                 <div className="p-3 border-top">
                   <form onSubmit={sendMessage} className="d-flex">
                     <input 
@@ -243,7 +281,7 @@ function Messages() {
               </>
             ) : (
               <div className="d-flex flex-column align-items-center justify-content-center" 
-                   style={{ height: '300px' }}> {/* Also reduced this height */}
+                   style={{ height: '300px' }}>
                 <div className="text-center">
                   <img 
                     src="/person.png" 
@@ -258,6 +296,8 @@ function Messages() {
           </div>
         </div>
       </div>
+      
+      {/* Removed New Conversation Modal */}
     </div>
   );
 }

@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { API_BASE_URL } from '../../config'; 
+import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { API_BASE_URL } from '../../config';
+import { useAuth } from '../context/AuthContext'; // Import useAuth
 
 function UserProfile() {
-  const { username } = useParams(); // Get username from the URL
-  console.log('Username:', username);
+  const { username } = useParams();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { user } = useAuth(); // Get current user to check if viewing own profile
+  const navigate = useNavigate(); // For navigation to messages page
+  
   useEffect(() => {
     // Fetch profile data from the API
     const fetchProfile = async () => {
@@ -29,6 +31,14 @@ function UserProfile() {
     fetchProfile();
   }, [username]);
 
+  // Function to navigate to messages and start conversation
+  const handleMessageUser = () => {
+    // Store the user to message in sessionStorage
+    sessionStorage.setItem('messageUser', JSON.stringify(profile));
+    // Navigate to messages page
+    navigate('/messages');
+  };
+
   if (loading) {
     return <p>Loading profile...</p>;
   }
@@ -36,6 +46,9 @@ function UserProfile() {
   if (error) {
     return <p>Error: {error}</p>;
   }
+
+  // Check if this is the current user's profile
+  const isOwnProfile = user && user.user_name === username;
 
   return (
     <div
@@ -82,6 +95,16 @@ function UserProfile() {
             <p>
               <a href={profile.linkedin_link} target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </p>
+            
+            {/* Add Message button - only show if not viewing own profile and user is logged in */}
+            {!isOwnProfile && user && (
+              <button 
+                className="btn btn-primary mt-3"
+                onClick={handleMessageUser}
+              >
+                <i className="bi bi-chat-dots me-1"></i> Send Message
+              </button>
+            )}
           </div>
         ) : (
           <p>No profile data available.</p>
